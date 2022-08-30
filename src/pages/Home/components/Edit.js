@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { v4 as uuidv4, v4 } from "uuid";
+import { v4 } from "uuid";
 
-export default function Edit({ add }) {
-
+export default function Edit({ add,submittingStatus }) {
   const [note, setNote] = useState("");
   function noteChange(e) {
     setNote(e.target.value);
@@ -20,15 +19,16 @@ export default function Edit({ add }) {
   }
 
   function addItem() {
+    submittingStatus.current = true
     add(function (prevData) {
       return [
-        ...prevData,
         {
           id: v4(),
           note,
           date,
           time,
         },
+        ...prevData,
       ];
     });
   }

@@ -1,13 +1,22 @@
 import React from "react";
 import Item from "./Item";
 
-export default function List({ listData }) {
-  console.log(listData);
+export default function List({ listData, deleteData,submittingStatus }) {
   return (
-    <div className="List">
+    <div className="list">
       {listData.map((item) => {
         const { note, date, time, id } = item;
-        return <Item key={id} note={note} date={date} time={time} />;
+        return (
+          <Item
+            key={id}
+            id={id}
+            note={note}
+            date={date}
+            time={time}
+            deleteData={deleteData}
+            submittingStatus={submittingStatus}
+          />
+        );
       })}
     </div>
   );
